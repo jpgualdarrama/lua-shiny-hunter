@@ -42,24 +42,25 @@ jobs:
         with:
           # A list of files, rockspecs, or directories to be checked.
           # Defaults to the workspace path as set by the `path` input.
-
-          files: . # optional, default is .
+          # files: . # optional, default is .
+          
           # The working directory for luacheck.
           # The file list should be relative to this path and output filenames be displayed relative 
           # to this path.
           # Defaults to the workspace path.
-
-          path: ${{ github.workspace }} # optional, default is ${{ github.workspace }}
+          # path: ${{ github.workspace }}
+          
           # Additional command-line arguments.
           # See https://luacheck.readthedocs.io/en/stable/cli.html
-
-          args: "" # optional
+          # Optional
+          # args: ""
+          
           # URL to a custom configuration (`.luacheckrc`) file that will be used as the default
           # configuration file.
-
-          config: "error" # optional
+          # Optional
+          # config: "" 
+         
           # Emits annotations for source code at locations parsed from the output. 
           # Must be set to "none", "warning" or "error".
           # Requires that output of warnings not be suppressed through the -qq or -qqq arguments.
-
-          annotate: none # optional, default is none
+          annotate: "error" # optional, default is none
