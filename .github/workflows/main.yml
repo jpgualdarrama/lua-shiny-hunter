@@ -53,7 +53,7 @@ jobs:
           # Additional command-line arguments.
           # See https://luacheck.readthedocs.io/en/stable/cli.html
           # Optional
-          args: "--globals memory"
+          args: "--globals memory --globals gui"
           
           # URL to a custom configuration (`.luacheckrc`) file that will be used as the default
           # configuration file.
