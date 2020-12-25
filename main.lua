@@ -122,13 +122,12 @@ local function printOpponentData()
     -- gui.text(0, 30, "Species " .. species)
     -- gui.text(0, 40, "Nature: " .. naturename[nature + 1])
     -- gui.text(0, 50, natureorder[natinc + 1] .. "+ " .. natureorder[natdec + 1] .. "-")
+    -- gui.text(0, 60, "PID: " .. string.format("%08X", personality), "yellow")
     -- gui.text(0, 70, "P1: " .. string.format("%04X", personality1), "yellow")
     -- gui.text(50, 70, "P2: " .. string.format("%04X", personality2), "yellow")
     -- gui.text(0, 80, "STID: " .. secretID, "yellow")
     -- gui.text(50, 80, "OTID: " .. originalID, "yellow")
-    -- gui.text(0, 20, "PID: " .. string.format("%08X", personality), "yellow")
     gui.text(0, 0, "Shiny?: " .. tostring(isShiny), "yellow")
-    -- gui.text(0, 10, "Battle?: " .. tostring(inBattle), "yellow")
 end
 
 local WAIT = {name = "WAIT", button = {}, delay = 100};
@@ -138,10 +137,6 @@ local LEFT = {name = "LEFT", button = {left = true}, delay = 50};
 local LEFT2 = {name = "LEFT2", button = {left = true}, delay = 100};
 local APPEARED = {name = "APPEARED", button = {A = true}, delay = 500};
 local FIGHT = {name = "FIGHT", button = {A = true}, delay = 100};
-local FIGHT2 = {name = "FIGHT2", button = {A = true}, delay = 100};
-local FIGHT3 = {name = "FIGHT3", button = {A = true}, delay = 100};
-local FIGHT4 = {name = "FIGHT4", button = {A = true}, delay = 100};
-local FIGHT5 = {name = "FIGHT5", button = {A = true}, delay = 100};
 
 local currentState = WAIT;
 local function setState()
@@ -176,17 +171,17 @@ local function setState()
             currentState = RIGHT
         end
     elseif currentState == APPEARED then
-        currentState = FIGHT
+        if inBattle then
+            currentState = FIGHT
+        else
+            currentState = WAIT
+        end
     elseif currentState == FIGHT then
-        currentState = FIGHT2
-    elseif currentState == FIGHT2 then
-        currentState = FIGHT3
-    elseif currentState == FIGHT3 then
-        currentState = FIGHT4
-    elseif currentState == FIGHT4 then
-        currentState = FIGHT5
-    elseif currentState == FIGHT5 then
-        currentState = WAIT
+        if inBattle then
+            currentState = FIGHT
+        else
+            currentState = WAIT
+        end
     end
 end
 
